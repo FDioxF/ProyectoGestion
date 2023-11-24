@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remax DB</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<!-- Barra Lateral -->
+<div class="sidebar">
+    <div class="logo-details">
+        <img src="../Img/Logo Letras Remax.jpg" alt="LogoLetrasRemax">
+        <i class="fa-solid fa-bars" id="ant"></i>
+    </div>
+    <ul class="list-nav">
+        <li>
+            <a href="#" data-target="1" onclick="mostrarSeccion(1)">
+                <i class="fa-solid fa-house"></i>
+                <span class="links-opt">Mis Propiedades</span>
+            </a>
+            <span class="info">Mis Propiedades</span>
+        </li>
+        <li>
+            <a href="#" data-target="2" onclick="mostrarSeccion(2)">
+                <i class="fa-solid fa-file"></i>
+                <span class="links-opt">Registrar Propiedad</span>
+            </a>
+            <span class="info">Registrar Propiedad</span>
+        </li>
+        <li class="profile">
+            <div class="profile-detail">
+                <img src="../Img/RemaxLogo.png" alt="LogoRemax">
+                <div class="agent">
+                    <div class="name">Viviana Cornejo</div>
+                    <div class="job">Agente Inmobiliario</div>
+                </div>
+            </div>
+            <i class="fa-solid fa-arrow-right-from-bracket" id="log_out"></i>
+        </li>
+    </ul>
+</div>
+<section id="1" class="home">
+    <div class="text">Mis Propiedades</div>
+    
+</section>
+<section id="2" class="home">
+    <div class="text">Registrar Propiedad</div>
+</section>
+<section>
+    <script src="./script.js"></script>
+</section>
+</body>
+</html>
