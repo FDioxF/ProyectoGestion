@@ -44,8 +44,8 @@ NHB varchar(2),
 NPS varchar(2)
 );
 
--- Trigger Genrador de PK Ubicación al realizar una insercion--
 DELIMITER //
+-- Trigger Genrador de PK Ubicación al realizar una insercion--
 CREATE TRIGGER pkUbicacion
 BEFORE INSERT ON Ubicacion
 FOR EACH ROW
@@ -59,11 +59,8 @@ BEGIN
     END IF;
     -- Generar el nuevo valor para CDIR
     SET NEW.CDIR = CONCAT('CDIR', LPAD(max_id + 1, 6, '0'));
-END;//
-DELIMITER ;
-
+END;
 -- Trigger Genrador de PK de Area Propiedad al realizar una insercion --
-DELIMITER //
 CREATE TRIGGER pkAreaPro
 BEFORE INSERT ON Area_Propiedad
 FOR EACH ROW
@@ -80,75 +77,62 @@ BEGIN
 END;//
 DELIMITER;
 
--- Procedimiento Insercion de Ubicacion --
+
 DELIMITER //
+-- Procedimiento Insercion de Ubicacion --
 CREATE PROCEDURE setUbicacion(IN S_DIR VARCHAR(100), IN S_DIST VARCHAR(20), IN S_PROV VARCHAR(20), in S_CIU varchar(20))
 BEGIN 
 insert into Ubicacion (DIR, DIST, PROV, CIU) values
 (S_DIR, S_DIST, S_PROV, S_CIU);
-END//
-DELIMITER;
+END;
 
 -- Procedimiento Insercion de Area Propiedad --
-DELIMITER //
 CREATE PROCEDURE setAreaPropiedad(IN S_ART VARCHAR(10),IN S_ARD VARCHAR(10), IN S_ARC VARCHAR(10))
 BEGIN 
 insert into Area_Propiedad (ART, ARD, ARC) values
 (S_ART, S_ARD, S_ARC);
-END//
-DELIMITER ;
+END;
 
 -- Procedimiento Insercion de Cliente --
-DELIMITER //
 CREATE PROCEDURE setCliente(IN S_DNI VARCHAR(8),IN S_NOM VARCHAR(20),IN S_CDIR VARCHAR(10))
 BEGIN 
 insert into Cliente (DNI, NOM, CDIR) values
 (S_DNI, S_NOM, S_CDIR);
-END//
-DELIMITER ;
+END;
 
 -- Procedimiento Insercion de N Telefono --
-DELIMITER //
 CREATE PROCEDURE setNTelefonos(IN S_DNI varchar(8),IN S_NTEL VARCHAR(9))
 BEGIN 
 insert into N_Telefonos (DNI, NTEL) values
 (S_DNI, S_NTEL);
-END//
-DELIMITER ;
+END;
 
 -- Procedimiento Insercion de Propiedad --
-DELIMITER //
 CREATE PROCEDURE setPropiedad(IN S_NPR VARCHAR(12), IN S_DNIC VARCHAR(8), IN S_CDIR VARCHAR(10), IN S_CAR VARCHAR(10), IN S_ANT VARCHAR(5), IN S_PRC VARCHAR(15), IN S_NBA VARCHAR(2), IN S_NHB VARCHAR(2), IN S_NPS VARCHAR(2))
 BEGIN 
 insert into Propiedad (NPR, DNIC, CDIR, CAR, ANT, PRC, NBA, NHB, NPS) values
 (S_NPR, S_DNIC, S_CDIR, S_CAR, S_ANT, S_PRC, S_NBA, S_NHB, S_NPS);
-END//
-DELIMITER ;
+END;
 
 -- Procedimiento Obtener PK ultima Ubicación --
-DELIMITER //
 CREATE PROCEDURE getLastCDIR(OUT resultado VARCHAR(10))
 BEGIN
   SELECT CDIR INTO resultado
   FROM Ubicacion
   ORDER BY CDIR DESC
   LIMIT 1;
-END //
-DELIMITER ;
+END;
 
 -- Procedimiento Obtener PK ultima Area Propiedad --
-DELIMITER //
 CREATE PROCEDURE getLastCAR(OUT resultado VARCHAR(10))
 BEGIN
   SELECT CAR INTO resultado
   FROM Area_Propiedad
   ORDER BY CAR DESC
   LIMIT 1;
-END //
-DELIMITER ;
+END;
 
 -- Procedimiento para el registro de Todos los datos de un cliente --
-DELIMITER //
 CREATE PROCEDURE regCli(IN S_DIR VARCHAR(100), IN S_DIST VARCHAR(20), IN S_PROV VARCHAR(20), in S_CIU varchar(20),
 						IN S_DNI VARCHAR(8),IN S_NOM VARCHAR(20),
                         IN S_NTEL VARCHAR(9))
@@ -157,11 +141,9 @@ BEGIN
     CALL getLastCDIR(@lastCDIR);
     call setCliente(S_DNI, S_NOM, @lastCDIR);
     call setNTelefonos(S_DNI, S_NTEL);
-END; //
-DELIMITER ;
+END;
 
 -- Procedimiento para el registro de Todos los datos de una propiedad --
-DELIMITER //
 CREATE PROCEDURE regPro(IN S_DIR VARCHAR(100), IN S_DIST VARCHAR(20), IN S_PROV VARCHAR(20), in S_CIU varchar(20),
 						IN S_ART VARCHAR(10),IN S_ARD VARCHAR(10), IN S_ARC VARCHAR(10),
                         IN S_NPR VARCHAR(12), IN S_DNIC VARCHAR(8), IN S_ANT VARCHAR(5), IN S_PRC VARCHAR(15), IN S_NBA VARCHAR(2), IN S_NHB VARCHAR(2), IN S_NPS VARCHAR(2))					
@@ -173,6 +155,24 @@ BEGIN
     call setPropiedad(S_NPR, S_DNIC, @lastCDIR, @lastCAR, S_ANT, S_PRC, S_NBA, S_NHB, S_NPS);
 END; //
 DELIMITER ;
+
+DELIMITER //
+-- Procedimiento Insercion de Ubicacion --
+CREATE PROCEDURE getPro(OUT S_NPR VARCHAR(12), OUT S_DNIC VARCHAR(8), OUT S_CDIR VARCHAR(10), OUT S_CAR VARCHAR(10),
+						OUT S_ANT VARCHAR(5), OUT S_PRC VARCHAR(15), OUT S_NBA VARCHAR(2), OUT S_NHB VARCHAR(2), OUT S_NPS VARCHAR(2))
+BEGIN 
+	SELECT NPR, DNIC, CDIR, CAR, ANT, PRC, NBA, NHB, NPS 
+    INTO S_NPR, S_DNIC, S_CDIR, S_CAR, S_ANT, S_PRC, S_NBA, S_NHB, S_NPS FROM Propiedad
+    order by CAR desc
+    limit 1;
+END //
+DELIMITER ;
+
+CALL getPro(@S_NPR, @S_DNIC, @S_CDIR, @S_CAR, @S_ANT, @S_PRC, @S_NBA, @S_NHB, @S_NPS);
+SELECT @S_NPR as NPR, @S_DNIC as DNIC, @S_CDIR as CDIR, @S_CAR as CAR,
+    @S_ANT as ANT, @S_PRC as PRC, @S_NBA as NBA, @S_NHB as NHB, @S_NPS as NPS;
+
+
 
 call regCli('Colegio Ingenieros F-3', 'Cerro Colorado', 'Arequipa', 'Arequipa', '73018668', 'Fernando Dios', '941358274');
 call regPro('Colegio Ingenieros F-3', 'Cerro Colorado', 'Arequipa', 'Arequipa', '900', '400', '500', '719238495434', '73018668', '7', '90000', '4', '4', '3');
