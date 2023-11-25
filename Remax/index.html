@@ -50,19 +50,35 @@
 </div>
 <section id="1" class="home">
     <div class="text">Mis Propiedades</div>
-    <br>
-    <table border="1" id="tablaDatos">
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-        </tr>
-    </table>
-    <script>
-        // Llama a la función definida en script.js
-        obtenerDatosYMostrarTabla();
-    </script>
-    <br>
+    <div>
+        <table border='1' id="tablaClientes">
+            <tr>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+            </tr>
+        </table>
+        <script>
+            // Realizar la solicitud al servidor y actualizar la tabla con JavaScript
+            fetch('./php/tablaPro.php')
+                .then(response => response.json())
+                .then(data => {
+                    // Referenciar la tabla
+                    const tablaClientes = document.getElementById('tablaClientes');
+    
+                    // Limpiar la tabla
+                    tablaClientes.innerHTML = "<tr><th>DNI</th><th>Nombre</th><th>Dirección</th></tr>";
+    
+                    // Llenar la tabla con los datos obtenidos
+                    data.forEach(cliente => {
+                        const fila = `<tr><td>${cliente.DNI}</td><td>${cliente.NOM}</td><td>${cliente.CDIR}</td></tr>`;
+                        tablaClientes.innerHTML += fila;
+                    });
+                })
+                .catch(error => console.error('Error al obtener datos:', error));
+        </script>
+    </div>
+    
 </section>
 <section id="2" class="home">
     <div class="text">Registrar Cliente</div>

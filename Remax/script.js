@@ -69,22 +69,21 @@ function regPro() {
   xhr.send(datos);
 }
 
-function obtenerDatosYMostrarTabla() {
-  var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-          var datos = JSON.parse(this.responseText);
-          var tabla = document.getElementById("tablaDatos");
-          tabla.innerHTML = "<tr><th>ID</th><th>Nombre</th><th>Descripción</th></tr>";
+function actualizarTabla() {
+  fetch('./php/tablaPro.php')
+      .then(response => response.json())
+      .then(data => {
+          const tablaClientes = document.getElementById('tablaClientes');
+          tablaClientes.innerHTML = "<tr><th>DNI</th><th>Nombre</th><th>Dirección</th></tr>";
 
-          datos.forEach(function (fila) {
-              var filaHTML = "<tr><td>" + fila.id + "</td><td>" + fila.nombre + "</td><td>" + fila.descripcion + "</td></tr>";
-              tabla.innerHTML += filaHTML;
+          data.forEach(cliente => {
+              const fila = `<tr><td>${cliente.DNI}</td><td>${cliente.NOM}</td><td>${cliente.CDIR}</td></tr>`;
+              tablaClientes.innerHTML += fila;
           });
-      }
-  };
-
-  xhr.open("GET", "obtenerDatos.php", true);
-  xhr.send();
+      })
+      .catch(error => console.error('Error al obtener datos:', error));
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+  actualizarTabla();
+});
