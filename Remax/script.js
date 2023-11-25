@@ -20,62 +20,65 @@ function mostrarSeccion(numeroSeccion) {
     seccionSeleccionada.style.display = 'block';
 }
 
-//Consulta Cliente con Dni
-function consultarClientes() {
-  // Obtener el valor del DNI del formulario
-  const dni = document.getElementById("dni").value;
+// Funcion que recibe el formulario de Registro de Cliente y lo envia a la consulta PHP
+function regCli() {
+  var dni = document.getElementById("dni").value;
+  var nombre = document.getElementById("nombre").value;
+  var direccion = document.getElementById("direccion").value;
+  var distrito = document.getElementById("distrito").value;
+  var provincia = document.getElementById("provincia").value;
+  var ciudad = document.getElementById("ciudad").value;
+  var telefono = document.getElementById("telefono").value;
 
-  // Realizar una solicitud AJAX al servidor para ejecutar la consulta
-  const xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-          // Manejar la respuesta del servidor
-          const resultados = JSON.parse(xhr.responseText);
-          mostrarResultados(resultados);
-      }
+  var xhr = new XMLHttpRequest();
+
+  xhr.open("POST", "./php/regisCli.php", true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      // Mostrar el mensaje de éxito o error
+      document.getElementById("mensaje").innerHTML = xhr.responseText;
+    }
   };
 
-  // Configurar la solicitud AJAX
-  xhr.open("GET", `conRemax.php?dni=${dni}`, true);
-  xhr.send();
+  var datos = "dni=" + dni + "&nombre=" + nombre + "&direccion=" + direccion +
+              "&distrito=" + distrito + "&provincia=" + provincia + "&ciudad=" + ciudad +
+              "&telefono=" + telefono;
+  xhr.send(datos);
 }
 
-function mostrarResultados(resultados) {
-  // Obtener el contenedor de resultados
-  const resultadosContainer = document.getElementById("resultados");
+// Funcion que recibe el formulario de Registro de Porpiedad y lo envia a la consulta PHP
+function regPro() {
+  var direccion = document.getElementById("direccion").value;
+  var distrito = document.getElementById("distrito").value;
+  var provincia = document.getElementById("provincia").value;
+  var ciudad = document.getElementById("ciudad").value;
+  var partida = document.getElementById("partida").value;
+  var dnipro = document.getElementById("dnipro").value;
+  var precio = document.getElementById("precio").value;
+  var habitaciones = document.getElementById("habitaciones").value;
+  var banos = document.getElementById("banos").value;
+  var piso = document.getElementById("piso").value;
+  var antiguedad = document.getElementById("antiguedad").value;
+  var areaTotal = document.getElementById("areaTotal").value;
+  var areaDisponible = document.getElementById("areaDisponible").value;
+  var areaConstruida = document.getElementById("areaConstruida").value;
 
-  // Limpiar el contenedor de resultados
-  resultadosContainer.innerHTML = "";
+  var xhr = new XMLHttpRequest();
 
-  // Mostrar los resultados en el contenedor
-  resultados.forEach(function (cliente) {
-      const clienteInfo = document.createElement("div");
-      clienteInfo.textContent = `Nombre: ${cliente.NOM}`;
-      resultadosContainer.appendChild(clienteInfo);
-  });
-}
+  xhr.open("POST", "./php/regisPro.php", true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-//Registrar Cliente
-function registrarCliente() {
-  // Obtener los valores del formulario
-  const dni = document.getElementById("dni").value;
-  const nombre = document.getElementById("nombre").value;
-  const direccion = document.getElementById("direccion").value;
-
-  // Realizar una solicitud AJAX al servidor para ejecutar la inserción
-  const xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-          // Manejar la respuesta del servidor
-          alert(xhr.responseText); // Puedes manejar la respuesta de acuerdo a tus necesidades
-      }
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      // Mostrar el mensaje de éxito o error
+      document.getElementById("mensaje").innerHTML = xhr.responseText;
+    }
   };
 
-  // Configurar la solicitud AJAX
-  xhr.open("POST", "insertarCliente.php", true);
-  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-  // Enviar los datos del formulario al servidor
-  const data = `dni=${dni}&nombre=${nombre}&direccion=${direccion}`;
-  xhr.send(data);
+  var datos = "direccion=" + direccion + "&distrito=" + distrito + "&provincia=" + provincia + "&ciudad=" + ciudad +
+              "&partida=" + partida + "&dnipro=" + dnipro + "&precio=" + precio + "&habitaciones=" + habitaciones + "&banos=" + banos + "&piso=" + piso + "&antiguedad=" + antiguedad +
+              "&areaTotal=" + areaTotal + "&areaDisponible=" + areaDisponible + "&areaConstruida=" + areaConstruida;
+  xhr.send(datos);
 }

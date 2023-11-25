@@ -50,34 +50,89 @@
 </div>
 <section id="1" class="home">
     <div class="text">Mis Propiedades</div>
-
-    <form id="consultaForm">
-        <label for="dni">Ingrese DNI:</label>
-        <input type="text" id="dni" name="dni" required>
-        <button type="button" onclick="consultarClientes()">Consultar</button>
-    </form>
-
-    <!-- Contenedor para mostrar los resultados -->
-    <div id="resultados"></div>
-
+    
 </section>
 <section id="2" class="home">
     <div class="text">Registrar Cliente</div>
-    <form id="registroForm">
+    <form id="f-recli" onsubmit="regCli(); return false;" method="post">
         <label for="dni">DNI:</label>
         <input type="text" id="dni" name="dni" required>
+        <br>
 
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" required>
+        <br>
 
         <label for="direccion">Dirección:</label>
         <input type="text" id="direccion" name="direccion" required>
+        <br>
 
-        <button type="button" onclick="registrarCliente()">Registrar Cliente</button>
+        <label for="distrito">Distrito:</label>
+        <input type="text" id="distrito" name="distrito" required>
+        <br>
+
+        <label for="provincia">Provincia:</label>
+        <input type="text" id="provincia" name="provincia" required>
+        <br>
+
+        <label for="ciudad">Ciudad:</label>
+        <input type="text" id="ciudad" name="ciudad" required>
+        <br>
+
+        <label for="telefono">Número de Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" required>
+        <br>
+
+        <button type="submit">Enviar</button>
     </form>
 </section>
 <section id="3" class="home">
     <div class="text">Registrar Propiedad</div>
+    <form id="f-repro" onsubmit="regPro(); return false;" method="post">
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion" required>
+        <br>
+        <label for="distrito">Distrito:</label>
+        <input type="text" id="distrito" name="distrito" required>
+        <br>
+        <label for="provincia">Provincia:</label>
+        <input type="text" id="provincia" name="provincia" required>
+        <br>
+        <label for="ciudad">Ciudad:</label>
+        <input type="text" id="ciudad" name="ciudad" required>
+        <br>
+        <label for="partida">N° Partida:</label>
+        <input type="text" id="partida" name="partida" required>
+        <br>
+        <label for="dnipro">DNI Propietario:</label>
+        <input type="text" id="dnipro" name="dnipro" required>
+        <br>
+        <label for="precio">Precio:</label>
+        <input type="text" id="precio" name="precio" required>
+        <br>
+        <label for="habitaciones">N° Habitaciones:</label>
+        <input type="text" id="habitaciones" name="habitaciones" required>
+        <br>
+        <label for="banos">N° Baños:</label>
+        <input type="text" id="banos" name="banos" required>
+        <br>
+        <label for="piso">N° Piso:</label>
+        <input type="text" id="piso" name="piso" required>
+        <br>
+        <label for="antiguedad">Antiguedad:</label>
+        <input type="text" id="antiguedad" name="antiguedad" required>
+        <br>
+        <label for="areaTotal">Area Total:</label>
+        <input type="text" id="areaTotal" name="areaTotal" required>
+        <br>
+        <label for="areaDisponible">Area Disponible:</label>
+        <input type="text" id="areaDisponible" name="areaDisponible" required>
+        <br>
+        <label for="areaConstruida">Area Construida:</label>
+        <input type="text" id="areaConstruida" name="areaConstruida" required>
+        <br>
+        <button type="submit">Enviar</button>
+    </form>
 </section>
 <section>
     <script src="./script.js"></script>
