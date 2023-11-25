@@ -35,13 +35,6 @@ function regCli() {
   xhr.open("POST", "./php/regisCli.php", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      // Mostrar el mensaje de éxito o error
-      document.getElementById("mensaje").innerHTML = xhr.responseText;
-    }
-  };
-
   var datos = "dni=" + dni + "&nombre=" + nombre + "&direccion=" + direccion +
               "&distrito=" + distrito + "&provincia=" + provincia + "&ciudad=" + ciudad +
               "&telefono=" + telefono;
@@ -70,15 +63,28 @@ function regPro() {
   xhr.open("POST", "./php/regisPro.php", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      // Mostrar el mensaje de éxito o error
-      document.getElementById("mensaje").innerHTML = xhr.responseText;
-    }
-  };
-
   var datos = "direccion=" + direccion + "&distrito=" + distrito + "&provincia=" + provincia + "&ciudad=" + ciudad +
               "&partida=" + partida + "&dnipro=" + dnipro + "&precio=" + precio + "&habitaciones=" + habitaciones + "&banos=" + banos + "&piso=" + piso + "&antiguedad=" + antiguedad +
               "&areaTotal=" + areaTotal + "&areaDisponible=" + areaDisponible + "&areaConstruida=" + areaConstruida;
   xhr.send(datos);
 }
+
+function obtenerDatosYMostrarTabla() {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+          var datos = JSON.parse(this.responseText);
+          var tabla = document.getElementById("tablaDatos");
+          tabla.innerHTML = "<tr><th>ID</th><th>Nombre</th><th>Descripción</th></tr>";
+
+          datos.forEach(function (fila) {
+              var filaHTML = "<tr><td>" + fila.id + "</td><td>" + fila.nombre + "</td><td>" + fila.descripcion + "</td></tr>";
+              tabla.innerHTML += filaHTML;
+          });
+      }
+  };
+
+  xhr.open("GET", "obtenerDatos.php", true);
+  xhr.send();
+}
+
