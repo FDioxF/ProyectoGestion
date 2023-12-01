@@ -171,38 +171,20 @@ DELIMITER ;
 CALL getPro(@S_NPR, @S_DNIC, @S_CDIR, @S_CAR, @S_ANT, @S_PRC, @S_NBA, @S_NHB, @S_NPS);
 SELECT @S_NPR as NPR, @S_DNIC as DNIC, @S_CDIR as CDIR, @S_CAR as CAR,
     @S_ANT as ANT, @S_PRC as PRC, @S_NBA as NBA, @S_NHB as NHB, @S_NPS as NPS;
-
-
+    
 
 call regCli('Colegio Ingenieros F-3', 'Cerro Colorado', 'Arequipa', 'Arequipa', '73018668', 'Fernando Dios', '941358274');
+call regCli('Av Caracas 621', 'JLBYR', 'Arequipa', 'Arequipa', '76452310', 'Angie Alvarez', '945134723');
+call regCli('Contamana 219', 'JLBYR', 'Arequipa', 'Arequipa', '71645291', 'Jose Huamani', '951826738');
+call regCli('Av Brazil 328', 'Cerro Colorado', 'Arequipa', 'Arequipa', '76146899', 'Piero Muñante', '986326456');
+call regCli('Jiron Jose Antonio Encinas 124', 'Cercado', 'Arequipa', 'Arequipa', '70513742', 'Terrep Bejar', '914236825');
+
 call regPro('Colegio Ingenieros F-3', 'Cerro Colorado', 'Arequipa', 'Arequipa', '900', '400', '500', '719238495434', '73018668', '7', '90000', '4', '4', '3');
-call setUbicacion('Colegio Ingenieros F-3', 'Cerro Colorado', 'Arequipa', 'Arequipa');
-call setAreaPropiedad('900', '400', '500');
-call setCliente('73018668', 'Fernando Dios', 'CDIR000001');
-call setNTelefonos('73018668', '978654312');
-call setPropiedad('719238495434', '73018668', 'CDIR000001', 'CAR0000001', '7', '90000', '4', '4', '3');
+call regPro('Av Caracas 621', 'JLBYR', 'Arequipa', 'Arequipa', '1000', '500', '500', '293847283456', '76452310', '5', '5000', '2', '2', '2');
+call regPro('Contamana 219', 'JLBYR', 'Arequipa', 'Arequipa', '400', '400', '0', '273646473812', '71645291', '3', '10000', '3', '3', '1');
+call regPro('Av Brazil 328', 'Cerro Colorado', 'Arequipa', 'Arequipa', '700', '400', '300', '989898767654', '76146899', '1', '7000', '3', '3', '1');
+call regPro('Jiron Jose Antonio Encinas 124', 'Cercado', 'Arequipa', 'Arequipa', '100', '50', '50', '121232323456', '70513742', '5', '8000', '3', '3', '1');
 
--- Inserción de datos -- 
-
-INSERT INTO Area_Propiedad VALUES ('CAR005', '900', '400', '500');
-INSERT INTO Area_Propiedad VALUES ('CAR006', '1000', '450', '550');
-INSERT INTO Area_Propiedad VALUES ('CAR007', '1000', '500', '600');
-INSERT INTO Area_Propiedad VALUES ('CAR008', '1200', '550', '650');
-
-INSERT INTO Cliente VALUES ('34567891', 'Pedro Sanchez', 'CDIR005');
-INSERT INTO Cliente VALUES ('19876543', 'Carmen Morales', 'CDIR006');
-INSERT INTO Cliente VALUES ('45678912', 'Luis Guzman', 'CDIR007');
-INSERT INTO Cliente VALUES ('21987654', 'Rosa Vasquez', 'CDIR008');
-
-INSERT INTO N_Telefonos VALUES ('34567891', '978654312');
-INSERT INTO N_Telefonos VALUES ('19876543', '921345687');
-INSERT INTO N_Telefonos VALUES ('45678912', '934567821');
-INSERT INTO N_Telefonos VALUES ('21987654', '956789213');
-
-INSERT INTO Propiedad VALUES ('NPR005', '34567891', 'CDIR005', 'CAR005', '7', '90000', '4', '4', '3');
-INSERT INTO Propiedad VALUES ('NPR006', '19876543', 'CDIR006', 'CAR006', '6', '45000', '3', '3', '2');
-INSERT INTO Propiedad VALUES ('NPR007', '45678912', 'CDIR007', 'CAR007', '5', '50000', '2', '2', '1');
-INSERT INTO Propiedad VALUES ('NPR008', '21987654', 'CDIR008', 'CAR008', '8', '15000', '4', '4', '3');
 
 
 
