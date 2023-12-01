@@ -4,10 +4,9 @@ let closeAnt = document.querySelector("#ant");
 // Cambio de barra lateral
 closeAnt.addEventListener("click", () => {
   sidebar.classList.toggle("open");
-  menuBtnChange(); //calling the function(optional)
 });
 
-// Cambio de section segun Opcion del menu
+// Cambio de section segun Opcion del menu  
 function mostrarSeccion(numeroSeccion) {
     // Oculta todas las secciones
     var secciones = document.querySelectorAll('.home');
@@ -73,16 +72,28 @@ function actualizarTabla() {
   fetch('./php/tablaPro.php')
       .then(response => response.json())
       .then(data => {
-          const tablaClientes = document.getElementById('tablaClientes');
-          tablaClientes.innerHTML = "<tr><th>DNI</th><th>Nombre</th><th>Dirección</th></tr>";
-
-          data.forEach(cliente => {
-              const fila = `<tr><td>${cliente.DNI}</td><td>${cliente.NOM}</td><td>${cliente.CDIR}</td></tr>`;
-              tablaClientes.innerHTML += fila;
-          });
+          const tablaPropiedades = document.getElementById('tablaPropiedades');
+          
+          // Verificar que el elemento exista antes de modificar su contenido
+          if (tablaPropiedades) {
+            // Limpiar filas existentes
+            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th></tr>";
+            
+            // Agregar nuevas filas
+            data.forEach(propiedad => {
+                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td></tr>`;
+                tablaPropiedades.innerHTML += fila;
+            });
+          } else {
+            console.error('Elemento tablaPropiedades no encontrado.');
+          }
       })
-      .catch(error => console.error('Error al obtener datos:', error));
+      .catch(error => {
+          console.error('Error al obtener datos:', error);
+          // Manejar los errores de manera adecuada, por ejemplo, mostrar un mensaje amigable para el usuario
+      });
 }
+
 
 document.addEventListener("DOMContentLoaded", function() {
   actualizarTabla();
