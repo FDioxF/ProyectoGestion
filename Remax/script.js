@@ -19,6 +19,15 @@ function mostrarSeccion(numeroSeccion) {
     seccionSeleccionada.style.display = 'block';
 }
 
+function inicio() {
+  var secciones = document.querySelectorAll('.home');
+  secciones.forEach(function(seccion) {
+      seccion.style.display = 'none';
+  });
+  var seccionSeleccionada = document.getElementById(1);
+  seccionSeleccionada.style.display = 'block';
+}
+
 // Funcion que recibe el formulario de Registro de Cliente y lo envia a la consulta PHP
 function regCli() {
   var dni = document.getElementById("dni").value;
@@ -77,11 +86,11 @@ function ordenarPorRecientes() {
           // Verificar que el elemento exista antes de modificar su contenido
           if (tablaPropiedades) {
             // Limpiar filas existentes
-            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th></tr>";
+            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th><th>Area Total</th><th>Area Disponible</th><th>Area Construida</th></tr>";
             
             // Agregar nuevas filas
             data.forEach(propiedad => {
-                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td></tr>`;
+                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td><td>${propiedad.ART}</td><td>${propiedad.ARD}</td><td>${propiedad.ARC}</td></tr>`;
                 tablaPropiedades.innerHTML += fila;
             });
           } else {
@@ -103,37 +112,11 @@ function ordenarPorAntiguas() {
           // Verificar que el elemento exista antes de modificar su contenido
           if (tablaPropiedades) {
             // Limpiar filas existentes
-            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th></tr>";
+            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th><th>Area Total</th><th>Area Disponible</th><th>Area Construida</th></tr>";
             
             // Agregar nuevas filas
             data.forEach(propiedad => {
-                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td></tr>`;
-                tablaPropiedades.innerHTML += fila;
-            });
-          } else {
-            console.error('Elemento tablaPropiedades no encontrado.');
-          }
-      })
-      .catch(error => {
-          console.error('Error al obtener datos:', error);
-          // Manejar los errores de manera adecuada, por ejemplo, mostrar un mensaje amigable para el usuario
-      });
-}
-
-function ordenarPorCiudad() {
-  fetch('./php/ordenarPorCiudad.php')
-      .then(response => response.json())
-      .then(data => {
-          const tablaPropiedades = document.getElementById('tablaPropiedades');
-          
-          // Verificar que el elemento exista antes de modificar su contenido
-          if (tablaPropiedades) {
-            // Limpiar filas existentes
-            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th></tr>";
-            
-            // Agregar nuevas filas
-            data.forEach(propiedad => {
-                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td></tr>`;
+                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td><td>${propiedad.ART}</td><td>${propiedad.ARD}</td><td>${propiedad.ARC}</td></tr>`;
                 tablaPropiedades.innerHTML += fila;
             });
           } else {
@@ -155,11 +138,37 @@ function ordenarPorDistrito() {
           // Verificar que el elemento exista antes de modificar su contenido
           if (tablaPropiedades) {
             // Limpiar filas existentes
-            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th></tr>";
+            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th><th>Area Total</th><th>Area Disponible</th><th>Area Construida</th></tr>";
             
             // Agregar nuevas filas
             data.forEach(propiedad => {
-                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td></tr>`;
+                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td><td>${propiedad.ART}</td><td>${propiedad.ARD}</td><td>${propiedad.ARC}</td></tr>`;
+                tablaPropiedades.innerHTML += fila;
+            });
+          } else {
+            console.error('Elemento tablaPropiedades no encontrado.');
+          }
+      })
+      .catch(error => {
+          console.error('Error al obtener datos:', error);
+          // Manejar los errores de manera adecuada, por ejemplo, mostrar un mensaje amigable para el usuario
+      });
+}
+
+function ordenarPorCiudad() {
+  fetch('./php/ordenarPorCiudad.php')
+      .then(response => response.json())
+      .then(data => {
+          const tablaPropiedades = document.getElementById('tablaPropiedades');
+          
+          // Verificar que el elemento exista antes de modificar su contenido
+          if (tablaPropiedades) {
+            // Limpiar filas existentes
+            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th><th>Area Total</th><th>Area Disponible</th><th>Area Construida</th></tr>";
+            
+            // Agregar nuevas filas
+            data.forEach(propiedad => {
+                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td><td>${propiedad.ART}</td><td>${propiedad.ARD}</td><td>${propiedad.ARC}</td></tr>`;
                 tablaPropiedades.innerHTML += fila;
             });
           } else {
@@ -181,11 +190,11 @@ function ordenarPorProvincia() {
           // Verificar que el elemento exista antes de modificar su contenido
           if (tablaPropiedades) {
             // Limpiar filas existentes
-            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th></tr>";
+            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th><th>Area Total</th><th>Area Disponible</th><th>Area Construida</th></tr>";
             
             // Agregar nuevas filas
             data.forEach(propiedad => {
-                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td></tr>`;
+                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td><td>${propiedad.ART}</td><td>${propiedad.ARD}</td><td>${propiedad.ARC}</td></tr>`;
                 tablaPropiedades.innerHTML += fila;
             });
           } else {
@@ -207,11 +216,11 @@ function ordenarPorMayorPrecio() {
           // Verificar que el elemento exista antes de modificar su contenido
           if (tablaPropiedades) {
             // Limpiar filas existentes
-            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th></tr>";
+            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th><th>Area Total</th><th>Area Disponible</th><th>Area Construida</th></tr>";
             
             // Agregar nuevas filas
             data.forEach(propiedad => {
-                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td></tr>`;
+                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td><td>${propiedad.ART}</td><td>${propiedad.ARD}</td><td>${propiedad.ARC}</td></tr>`;
                 tablaPropiedades.innerHTML += fila;
             });
           } else {
@@ -233,11 +242,11 @@ function ordenarPorMenorPrecio() {
           // Verificar que el elemento exista antes de modificar su contenido
           if (tablaPropiedades) {
             // Limpiar filas existentes
-            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th></tr>";
+            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th><th>Area Total</th><th>Area Disponible</th><th>Area Construida</th></tr>";
             
             // Agregar nuevas filas
             data.forEach(propiedad => {
-                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td></tr>`;
+                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td><td>${propiedad.ART}</td><td>${propiedad.ARD}</td><td>${propiedad.ARC}</td></tr>`;
                 tablaPropiedades.innerHTML += fila;
             });
           } else {
@@ -276,5 +285,6 @@ function filtro() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
+  inicio();
   ordenarPorRecientes();
 });
