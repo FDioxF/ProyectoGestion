@@ -68,8 +68,8 @@ function regPro() {
   xhr.send(datos);
 }
 
-function actualizarTabla() {
-  fetch('./php/tablaPro.php')
+function ordenarPorRecientes() {
+  fetch('./php/ordenarPorRecientes.php')
       .then(response => response.json())
       .then(data => {
           const tablaPropiedades = document.getElementById('tablaPropiedades');
@@ -77,11 +77,11 @@ function actualizarTabla() {
           // Verificar que el elemento exista antes de modificar su contenido
           if (tablaPropiedades) {
             // Limpiar filas existentes
-            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th></tr>";
+            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th></tr>";
             
             // Agregar nuevas filas
             data.forEach(propiedad => {
-                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td></tr>`;
+                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td></tr>`;
                 tablaPropiedades.innerHTML += fila;
             });
           } else {
@@ -94,7 +94,187 @@ function actualizarTabla() {
       });
 }
 
+function ordenarPorAntiguas() {
+  fetch('./php/ordenarPorAntiguas.php')
+      .then(response => response.json())
+      .then(data => {
+          const tablaPropiedades = document.getElementById('tablaPropiedades');
+          
+          // Verificar que el elemento exista antes de modificar su contenido
+          if (tablaPropiedades) {
+            // Limpiar filas existentes
+            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th></tr>";
+            
+            // Agregar nuevas filas
+            data.forEach(propiedad => {
+                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td></tr>`;
+                tablaPropiedades.innerHTML += fila;
+            });
+          } else {
+            console.error('Elemento tablaPropiedades no encontrado.');
+          }
+      })
+      .catch(error => {
+          console.error('Error al obtener datos:', error);
+          // Manejar los errores de manera adecuada, por ejemplo, mostrar un mensaje amigable para el usuario
+      });
+}
+
+function ordenarPorCiudad() {
+  fetch('./php/ordenarPorCiudad.php')
+      .then(response => response.json())
+      .then(data => {
+          const tablaPropiedades = document.getElementById('tablaPropiedades');
+          
+          // Verificar que el elemento exista antes de modificar su contenido
+          if (tablaPropiedades) {
+            // Limpiar filas existentes
+            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th></tr>";
+            
+            // Agregar nuevas filas
+            data.forEach(propiedad => {
+                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td></tr>`;
+                tablaPropiedades.innerHTML += fila;
+            });
+          } else {
+            console.error('Elemento tablaPropiedades no encontrado.');
+          }
+      })
+      .catch(error => {
+          console.error('Error al obtener datos:', error);
+          // Manejar los errores de manera adecuada, por ejemplo, mostrar un mensaje amigable para el usuario
+      });
+}
+
+function ordenarPorDistrito() {
+  fetch('./php/ordenarPorDistrito.php')
+      .then(response => response.json())
+      .then(data => {
+          const tablaPropiedades = document.getElementById('tablaPropiedades');
+          
+          // Verificar que el elemento exista antes de modificar su contenido
+          if (tablaPropiedades) {
+            // Limpiar filas existentes
+            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th></tr>";
+            
+            // Agregar nuevas filas
+            data.forEach(propiedad => {
+                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td></tr>`;
+                tablaPropiedades.innerHTML += fila;
+            });
+          } else {
+            console.error('Elemento tablaPropiedades no encontrado.');
+          }
+      })
+      .catch(error => {
+          console.error('Error al obtener datos:', error);
+          // Manejar los errores de manera adecuada, por ejemplo, mostrar un mensaje amigable para el usuario
+      });
+}
+
+function ordenarPorProvincia() {
+  fetch('./php/ordenarPorProvincia.php')
+      .then(response => response.json())
+      .then(data => {
+          const tablaPropiedades = document.getElementById('tablaPropiedades');
+          
+          // Verificar que el elemento exista antes de modificar su contenido
+          if (tablaPropiedades) {
+            // Limpiar filas existentes
+            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th></tr>";
+            
+            // Agregar nuevas filas
+            data.forEach(propiedad => {
+                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td></tr>`;
+                tablaPropiedades.innerHTML += fila;
+            });
+          } else {
+            console.error('Elemento tablaPropiedades no encontrado.');
+          }
+      })
+      .catch(error => {
+          console.error('Error al obtener datos:', error);
+          // Manejar los errores de manera adecuada, por ejemplo, mostrar un mensaje amigable para el usuario
+      });
+}
+
+function ordenarPorMayorPrecio() {
+  fetch('./php/ordenarPorMayorPrecio.php')
+      .then(response => response.json())
+      .then(data => {
+          const tablaPropiedades = document.getElementById('tablaPropiedades');
+          
+          // Verificar que el elemento exista antes de modificar su contenido
+          if (tablaPropiedades) {
+            // Limpiar filas existentes
+            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th></tr>";
+            
+            // Agregar nuevas filas
+            data.forEach(propiedad => {
+                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td></tr>`;
+                tablaPropiedades.innerHTML += fila;
+            });
+          } else {
+            console.error('Elemento tablaPropiedades no encontrado.');
+          }
+      })
+      .catch(error => {
+          console.error('Error al obtener datos:', error);
+          // Manejar los errores de manera adecuada, por ejemplo, mostrar un mensaje amigable para el usuario
+      });
+}
+
+function ordenarPorMenorPrecio() {
+  fetch('./php/ordenarPorMenorPrecio.php')
+      .then(response => response.json())
+      .then(data => {
+          const tablaPropiedades = document.getElementById('tablaPropiedades');
+          
+          // Verificar que el elemento exista antes de modificar su contenido
+          if (tablaPropiedades) {
+            // Limpiar filas existentes
+            tablaPropiedades.innerHTML = "<tr><th>N°Partida</th><th>Direccion</th><th>Distrito</th><th>Ciudad</th><th>Provincia</th><th>Precio</th><th>N°Piso</th><th>N°Habitaciones</th><th>N°Baños</th></tr>";
+            
+            // Agregar nuevas filas
+            data.forEach(propiedad => {
+                const fila = `<tr><td>${propiedad.NPR}</td><td>${propiedad.DIR}</td><td>${propiedad.DIST}</td><td>${propiedad.CIU}</td><td>${propiedad.PROV}</td><td>${propiedad.PRC}</td><td>${propiedad.NPS}</td><td>${propiedad.NHB}</td><td>${propiedad.NBA}</td></tr>`;
+                tablaPropiedades.innerHTML += fila;
+            });
+          } else {
+            console.error('Elemento tablaPropiedades no encontrado.');
+          }
+      })
+      .catch(error => {
+          console.error('Error al obtener datos:', error);
+          // Manejar los errores de manera adecuada, por ejemplo, mostrar un mensaje amigable para el usuario
+      });
+}
+
+function filtro() {
+  var seleccion = document.getElementById("filtro").value;
+
+  // Condicional para llamar a funciones diferentes según la opción seleccionada
+  if (seleccion === "Recientes") {
+    ordenarPorRecientes();
+  } else if (seleccion === "Antiguas") {
+    ordenarPorAntiguas();
+  } else if (seleccion === "Distrito") {
+    ordenarPorDistrito();
+  } else if (seleccion === "Ciudad") {
+    ordenarPorCiudad();
+  } else if (seleccion === "Provincia") {
+    ordenarPorProvincia();
+  } else if (seleccion === "Mayor Precio") {
+    ordenarPorMayorPrecio();
+  } else if (seleccion === "Menor Precio") {
+    ordenarPorMenorPrecio();
+  } else {
+    otraOpcionPorDefecto();
+  }
+
+  // Puedes hacer algo más con el valor seleccionado, como enviarlo a un servidor, etc.
+}
 
 document.addEventListener("DOMContentLoaded", function() {
-  actualizarTabla();
+  ordenarPorRecientes();
 });

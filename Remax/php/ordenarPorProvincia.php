@@ -7,7 +7,7 @@ if ($conn->connect_error) {
 }
 
 // Realizar la consulta
-$consulta = "SELECT NPR, DIR, CIU, DIST, PROV, NPS, NHB, NBA FROM Propiedad P INNER JOIN Ubicacion U ON P.CDIR = U.CDIR";
+$consulta = "SELECT NPR, DIR, CIU, DIST, PROV, PRC, NPS, NHB, NBA FROM Propiedad P INNER JOIN Ubicacion U ON P.CDIR = U.CDIR ORDER BY P.PROV desc";
 $resultado = $conn->query($consulta);
 
 // Obtener los resultados en un array

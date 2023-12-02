@@ -51,6 +51,17 @@
 <section id="1" class="home">
     <div class="text">Mis Propiedades</div>
     <div>
+        <label for="filtro">Ordenar Por</label>
+        <select name="filtro" id="filtro" onchange="filtro()">
+          <option value="Recientes">Recientes</option>
+          <option value="Antiguas">Antiguas</option>
+          <option value="Distrito">Distrito</option>
+          <option value="Ciudad">Ciudad</option>
+          <option value="Provincia">Provincia</option>
+          <option value="Mayor Precio">Mayor Precio</option>
+          <option value="Menor Precio">Menor Precio</option>
+        </select>
+    </div>
         <table border='1' id="tablaPropiedades">
             <tr>
                 <th>N° Partida</th>
@@ -58,6 +69,7 @@
                 <th>Distrito</th>
                 <th>Ciudad</th>
                 <th>Provincia</th>
+                <th>Precio</th>
                 <th>N° Piso</th>
                 <th>N° Habitaciones</th>
                 <th>N° Baños</th>

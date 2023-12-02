@@ -178,13 +178,37 @@ call regCli('Av Caracas 621', 'JLBYR', 'Arequipa', 'Arequipa', '76452310', 'Angi
 call regCli('Contamana 219', 'JLBYR', 'Arequipa', 'Arequipa', '71645291', 'Jose Huamani', '951826738');
 call regCli('Av Brazil 328', 'Cerro Colorado', 'Arequipa', 'Arequipa', '76146899', 'Piero Muñante', '986326456');
 call regCli('Jiron Jose Antonio Encinas 124', 'Cercado', 'Arequipa', 'Arequipa', '70513742', 'Terrep Bejar', '914236825');
+call regCli('Calle Los Pinos 321', 'Cercado', 'Arequipa', 'Arequipa', '34567891', 'Pedro Sanchez', '978654312');
+call regCli('Avenida Goyeneche 654', 'Cayma', 'Arequipa', 'Arequipa', '19876543', 'Carmen Morales', '921345687');
+call regCli('Jiron Melgar 987', 'Cayma', 'Arequipa', 'Arequipa', '45678912', 'Luis Guzman', '934567821');
+call regCli('Pasaje Selva Alegre 951', 'Yanahuara', 'Arequipa', 'Arequipa', '21987654', 'Rosa Vasquez', '956789213');
+CALL regCli('Calle Alegre 789', 'Barrio Sur', 'Lima', 'Lima', '11223344', 'María González', '965874123');
+CALL regCli('Avenida Central 567', 'Centro', 'Arequipa', 'Arequipa', '22334455', 'Carlos Martínez', '987654321');
+CALL regCli('Pasaje Tranquilo 321', 'Villa Rica', 'Pucallpa', 'Ucayali', '33445566', 'Laura Fernández', '912345678');
+CALL regCli('Callejón Estrecho 987', 'Miraflores', 'Lima', 'Lima', '44556677', 'Javier Torres', '998877665');
+CALL regCli('Avenida Amplia 654', 'Surco', 'Lima', 'Lima', '55667788', 'Rosa Sánchez', '923456789');
+CALL regCli('Calle Principal 321', 'Callao', 'Lima', 'Lima', '66778899', 'Alejandro Díaz', '933221100');
+CALL regCli('Pasaje Secreto 456', 'Bellavista', 'Callao', 'Lima', '77889900', 'Isabel Ramírez', '955667788');
+CALL regCli('Avenida Grande 789', 'Pueblo Libre', 'Lima', 'Lima', '88990011', 'Miguel López', '977788899');
+CALL regCli('Calle Ancha 987', 'San Isidro', 'Lima', 'Lima', '00112233', 'Patricia Herrera', '911223344');
+CALL regCli('Pasaje Estrecho 654', 'Barranco', 'Lima', 'Lima', '11223345', 'Roberto Fernández', '933221122');
 
 call regPro('Colegio Ingenieros F-3', 'Cerro Colorado', 'Arequipa', 'Arequipa', '900', '400', '500', '719238495434', '73018668', '7', '90000', '4', '4', '3');
 call regPro('Av Caracas 621', 'JLBYR', 'Arequipa', 'Arequipa', '1000', '500', '500', '293847283456', '76452310', '5', '5000', '2', '2', '2');
 call regPro('Contamana 219', 'JLBYR', 'Arequipa', 'Arequipa', '400', '400', '0', '273646473812', '71645291', '3', '10000', '3', '3', '1');
 call regPro('Av Brazil 328', 'Cerro Colorado', 'Arequipa', 'Arequipa', '700', '400', '300', '989898767654', '76146899', '1', '7000', '3', '3', '1');
 call regPro('Jiron Jose Antonio Encinas 124', 'Cercado', 'Arequipa', 'Arequipa', '100', '50', '50', '121232323456', '70513742', '5', '8000', '3', '3', '1');
-
-
-
-
+call regPro('Calle Los Pinos 321', 'Cercado', 'Arequipa', 'Arequipa', '900', '400', '500', '123456789123', '34567891', '7', '10000', '4', '4', '3');
+call regPro('Avenida Goyeneche 654', 'Cayma', 'Arequipa', 'Arequipa', '900', '400', '500', '345432123456', '34567891', '7', '9000', '4', '4', '3');
+call regPro('Jiron Melgar 987', 'Cayma', 'Arequipa', 'Arequipa', '900', '400', '500', '876757473727', '34567891', '7', '8000', '4', '4', '3');
+call regPro('Pasaje Selva Alegre 951', 'Yanahuara', 'Arequipa', 'Arequipa', '900', '400', '500', '987676890987', '34567891', '7', '7000', '4', '4', '3');
+call regPro('Calle Alegre 789', 'Barrio Sur', 'Lima', 'Lima', '600', '300', '300', '123456789124', '11223344', '5', '8000', '3', '2', '2');
+call regPro('Avenida Central 567', 'Centro', 'Arequipa', 'Arequipa', '700', '400', '300', '345432123457', '22334455', '8', '9500', '4', '3', '2');
+call regPro('Pasaje Tranquilo 321', 'Villa Rica', 'Pucallpa', 'Ucayali', '800', '400', '400', '876757473728', '33445566', '6', '7200', '3', '2', '1');
+call regPro('Callejón Estrecho 987', 'Miraflores', 'Lima', 'Lima', '550', '300', '250', '987676890988', '44556677', '10', '8800', '5', '3', '2');
+call regPro('Avenida Amplia 654', 'Surco', 'Lima', 'Lima', '900', '450', '450', '123456789125', '55667788', '4', '10500', '2', '1', '1');
+call regPro('Calle Principal 321', 'Callao', 'Lima', 'Lima', '750', '400', '350', '345432123458', '66778899', '7', '9200', '4', '2', '2');
+call regPro('Pasaje Secreto 456', 'Bellavista', 'Callao', 'Lima', '680', '350', '330', '876757473729', '77889900', '9', '7800', '3', '1', '1');
+call regPro('Avenida Grande 789', 'Pueblo Libre', 'Lima', 'Lima', '800', '400', '400', '987676890989', '88990011', '6', '8900', '3', '2', '2');
+call regPro('Calle Ancha 987', 'San Isidro', 'Lima', 'Lima', '950', '500', '450', '123456789126', '00112233', '3', '9800', '4', '3', '2');
+call regPro('Pasaje Estrecho 654', 'Barranco', 'Lima', 'Lima', '700', '350', '350', '345432123459', '11223345', '8', '8600', '2', '1', '1');
