@@ -7,13 +7,7 @@ if ($conn->connect_error) {
 }
 
 // Realizar la consulta
-$consulta = "SELECT NPR, DIR, CIU, DIST, PROV, PRC, NPS, NHB, NBA, ART, ARD, ARC
-FROM Propiedad P
-INNER JOIN Ubicacion U
-ON P.CDIR = U.CDIR
-INNER JOIN Area_Propiedad AP
-ON P.CAR = AP.CAR
-ORDER BY P.CDIR desc;";
+$consulta = "call filtPropRecientes()";
 $resultado = $conn->query($consulta);
 
 // Obtener los resultados en un array

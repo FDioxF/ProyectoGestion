@@ -153,10 +153,8 @@ BEGIN
     CALL setAreaPropiedad(S_ART, S_ARD, S_ARC);
     call getLastCAR(@lastCAR);
     call setPropiedad(S_NPR, S_DNIC, @lastCDIR, @lastCAR, S_ANT, S_PRC, S_NBA, S_NHB, S_NPS);
-END; //
-DELIMITER ;
+END;
 
-DELIMITER //
 -- Procedimiento Insercion de Ubicacion --
 CREATE PROCEDURE getPro(OUT S_NPR VARCHAR(12), OUT S_DNIC VARCHAR(8), OUT S_CDIR VARCHAR(10), OUT S_CAR VARCHAR(10),
 						OUT S_ANT VARCHAR(5), OUT S_PRC VARCHAR(15), OUT S_NBA VARCHAR(2), OUT S_NHB VARCHAR(2), OUT S_NPS VARCHAR(2))
@@ -168,9 +166,86 @@ BEGIN
 END //
 DELIMITER ;
 
-CALL getPro(@S_NPR, @S_DNIC, @S_CDIR, @S_CAR, @S_ANT, @S_PRC, @S_NBA, @S_NHB, @S_NPS);
-SELECT @S_NPR as NPR, @S_DNIC as DNIC, @S_CDIR as CDIR, @S_CAR as CAR,
-    @S_ANT as ANT, @S_PRC as PRC, @S_NBA as NBA, @S_NHB as NHB, @S_NPS as NPS;
+-- Procedimientos Para La obtención de datos --
+DELIMITER //
+-- Procedimiento Filtro Propiedades Recientes --
+CREATE PROCEDURE filtPropRecientes()
+BEGIN
+	SELECT NPR, DIR, CIU, DIST, PROV, PRC, NPS, NHB, NBA, ART, ARD, ARC
+	FROM Propiedad P
+	INNER JOIN Ubicacion U
+	ON P.CDIR = U.CDIR
+	INNER JOIN Area_Propiedad AP
+	ON P.CAR = AP.CAR
+	ORDER BY P.CDIR desc;
+END;
+
+CREATE PROCEDURE filtPropAntiguas()
+BEGIN
+	SELECT NPR, DIR, CIU, DIST, PROV, PRC, NPS, NHB, NBA, ART, ARD, ARC
+	FROM Propiedad P
+	INNER JOIN Ubicacion U
+	ON P.CDIR = U.CDIR
+	INNER JOIN Area_Propiedad AP
+	ON P.CAR = AP.CAR
+	ORDER BY P.CDIR asc;
+END; 
+
+CREATE PROCEDURE filtPropCiudad()
+BEGIN
+	SELECT NPR, DIR, CIU, DIST, PROV, PRC, NPS, NHB, NBA, ART, ARD, ARC
+	FROM Propiedad P
+	INNER JOIN Ubicacion U
+	ON P.CDIR = U.CDIR
+	INNER JOIN Area_Propiedad AP
+	ON P.CAR = AP.CAR
+	ORDER BY CIU asc;
+END;
+
+CREATE PROCEDURE filtPropDistrito()
+BEGIN
+	SELECT NPR, DIR, CIU, DIST, PROV, PRC, NPS, NHB, NBA, ART, ARD, ARC
+	FROM Propiedad P
+	INNER JOIN Ubicacion U
+	ON P.CDIR = U.CDIR
+	INNER JOIN Area_Propiedad AP
+	ON P.CAR = AP.CAR
+	ORDER BY DIST asc;
+END;
+
+CREATE PROCEDURE filtPropMayPrecio()
+BEGIN
+	SELECT NPR, DIR, CIU, DIST, PROV, PRC, NPS, NHB, NBA, ART, ARD, ARC
+	FROM Propiedad P
+	INNER JOIN Ubicacion U
+	ON P.CDIR = U.CDIR
+	INNER JOIN Area_Propiedad AP
+	ON P.CAR = AP.CAR
+	ORDER BY CAST(PRC AS UNSIGNED) asc;
+END;
+
+CREATE PROCEDURE filtPropMenPrecio()
+BEGIN
+	SELECT NPR, DIR, CIU, DIST, PROV, PRC, NPS, NHB, NBA, ART, ARD, ARC
+	FROM Propiedad P
+	INNER JOIN Ubicacion U
+	ON P.CDIR = U.CDIR
+	INNER JOIN Area_Propiedad AP
+	ON P.CAR = AP.CAR
+	ORDER BY CAST(PRC AS UNSIGNED) desc;
+END;
+
+CREATE PROCEDURE filtPropProvincia()
+BEGIN
+	SELECT NPR, DIR, CIU, DIST, PROV, PRC, NPS, NHB, NBA, ART, ARD, ARC
+	FROM Propiedad P
+	INNER JOIN Ubicacion U
+	ON P.CDIR = U.CDIR
+	INNER JOIN Area_Propiedad AP
+	ON P.CAR = AP.CAR
+	ORDER BY PROV asc;
+END; //
+DELIMITER ;
     
 
 call regCli('Colegio Ingenieros F-3', 'Cerro Colorado', 'Arequipa', 'Arequipa', '73018668', 'Fernando Dios', '941358274');

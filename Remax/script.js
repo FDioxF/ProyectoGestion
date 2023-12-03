@@ -278,10 +278,8 @@ function filtro() {
   } else if (seleccion === "Menor Precio") {
     ordenarPorMenorPrecio();
   } else {
-    otraOpcionPorDefecto();
+    ordenarPorRecientes();
   }
-
-  // Puedes hacer algo más con el valor seleccionado, como enviarlo a un servidor, etc.
 }
 
 document.addEventListener("DOMContentLoaded", function() {
